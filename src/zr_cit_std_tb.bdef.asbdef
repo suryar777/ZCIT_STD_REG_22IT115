@@ -1,0 +1,59 @@
+managed implementation in class ZBP_R_CIT_STD_TB unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_CIT_STD_TB alias ZrCitStdTb
+persistent table ZCIT_STD_TB
+extensible
+draft table ZCIT_STD_TB_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( mandatory : create )
+   StudentID;
+
+  field ( readonly )
+   CreatedBy,
+   CreatedAt,
+   LastChangedBy,
+   LastChangedAt,
+   LocalLastChangedAt;
+
+  field ( readonly : update )
+   StudentID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZCIT_STD_TB corresponding extensible
+  {
+    StudentID = STUDENT_ID;
+    FirstName = FIRST_NAME;
+    LastName = LAST_NAME;
+    Gender = GENDER;
+    DateOfBirth = DATE_OF_BIRTH;
+    EmailID = EMAIL_ID;
+    PhoneNumber = PHONE_NUMBER;
+    CourseName = COURSE_NAME;
+    Department = DEPARTMENT;
+    AdmissionDate = ADMISSION_DATE;
+    PreviousQualification = PREVIOUS_QUALIFICATION;
+    Percentage = PERCENTAGE;
+    Status = STATUS;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+  }
+
+}
